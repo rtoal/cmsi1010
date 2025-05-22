@@ -2,4 +2,4 @@
 
 No code in this lab!
 
-We're just learning git.
+We're just learning git. That is all.
