@@ -1,34 +1,30 @@
-# ----------------------------------------------------------------------
-# This is the file number_guesser.py
+import random
 
-# The intent is to give you practice writing a complete, interactive
-# Python program.
+number_to_guess = random.randint(1, 100)
+attempts = 0
 
-# Remove the comments in this file when you have completed your program.
-# You can, and should, include your own comments, but please remove the
-# comments that are here now.
-# ----------------------------------------------------------------------
+while True:
+    guess = input("Guess a number between 1 and 100 (or type 'bye' or 'exit' to quit): ")
 
-# Things to do:
+    # Check for exit conditions and legal input
+    if guess.lower() in ['bye', 'exit']:
+        print("Thanks for playing! Goodbye!")
+        break
+    if not guess.isdigit():
+        print("Please enter a valid number.")
+        continue
 
-# Generate a random number between 1 and 1000.
+    # Ok, if you got here, you know its a valid guess, so you can count
+    # the attempt and check the guess
+    attempts += 1
+    if int(guess) < number_to_guess:
+        print("Too low! Try again.")
+    elif int(guess) > number_to_guess:
+        print("Too high! Try again.")
+    else:
+        print(f"Congratulations! You've guessed the number in {attempts} tries!")
 
-# Ask the user to guess the number. In your prompt, let the user know they
-# can type 'bye' or 'exit' to quit the program.
-#
-# If their guess is not made up entirely of digits, print "Please enter a valid
-# number" and ask them to guess again.
-#
-# If the guess is too high, print "Too high!" and continue asking.
-#
-# If the guess is too low, print "Too low!" and continue asking.
-#
-# If the guess is correct, print "Congratulations! You guessed the number!" along
-# with the number of attempts it took to guess the number. Start over with a new
-# random number. Make sure to zero out the number of attempts.
+        # Get new number and reset attempt count for the next game
+        number_to_guess = random.randint(1, 100)
+        attempts = 0
 
-# Please note: There are likely to be a number of Python guessing games online,
-# and most GenAI systems can probably write this for you. Don’t rely on them,
-# as they rob you of a chance to practice your Python skills and they might not
-# even be correct. Perhaps, worse, they might not follow the instructions
-# exactly as given.
