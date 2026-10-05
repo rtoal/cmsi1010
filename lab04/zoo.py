@@ -27,9 +27,8 @@ print("Welcome to the Petting Zoo!")
 print("Type 'help' to get a list of all the things you can do")
 print()
 
-keep_going = True
-while keep_going:
-    response = input("What would you like to do? ").strip().lower()
+while True:
+    response = input("What would you like to do? ").strip()  .lower()
     if response == "help":
         show_help()
     elif response == "see":
@@ -39,6 +38,6 @@ while keep_going:
         pet_animal(animal)
     elif response == "bye":
         print("Goodbye!")
-        keep_going = False
+        break
     else:
         print("Sorry, I don't understand that command.")

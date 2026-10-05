@@ -9,17 +9,26 @@ words = {
     "color": ["pink", "blue", "mauve", "red", "transparent"]
 }
 
-template = """
+templates = [
+    """
     Yesterday the color noun
     verb preposition the coach’s
     adjective color noun that was
     adverb adjective before
+    """,
     """
+    Oh, no! The adjective adjective adjective
+    noun verb despite our adverb adjective efforts
+    """,
+    """
+    I could not find the color adjective noun
+    """
+]
 
 
 def random_sentence():
     sentence = []
-    for token in template.split():
+    for token in random.choice(templates).split():
         if token in words:
             sentence.append(random.choice(words[token]))
         else:
@@ -27,5 +36,5 @@ def random_sentence():
     return " ".join(sentence) + "."
 
 
-for _ in range(5):
+for _ in range(10):
     print(random_sentence())
