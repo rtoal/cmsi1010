@@ -18,6 +18,15 @@ class Person:
         dad = f"{self.dad.name if self.dad is not None else '?'}"
         return f"{self.name} {span} mom: {mom}, dad: {dad}"
 
+    def print_family_tree(self, prefix="", level=0):
+        """Print the family tree starting from this person."""
+        indent = "    " * level
+        print(f"{prefix}{self.name} {self.born or '?'}-{self.died or '?'}")
+        if self.mom:
+            self.mom.print_family_tree(f"  {indent}mom: ", level + 1)
+        if self.dad:
+            self.dad.print_family_tree(f"  {indent}dad: ", level + 1)
+
 
 odi = Person("Odelie Copele", born="1824", died="1873")
 paul = Person("Paul Grambois", born="1806")
@@ -54,7 +63,8 @@ francesco = Person("Francesco Alioto", born="c1813", died="c1880")
 maria = Person("Maria Alioto", born="1834",
                died=">1908", mom=vittoria, dad=francesco)
 concetta = Person("Concetta Buccafusca", born="c1795", died="1843")
-giuseppe = Person("Giuseppe Riggitano", born="c1786", died="1864")
+santi = Person("Santi Riggitano", born="c1754", died="c1814")
+giuseppe = Person("Giuseppe Riggitano", born="c1786", died="1864", dad=santi)
 santo = Person("Santo Riggitano", born="1824",
                died="c1898", mom=concetta, dad=giuseppe)
 salvatore = Person("Salvatore Riggitano", born="1876",
@@ -70,3 +80,12 @@ print(louise_a)
 print(adele)
 print(vittoria.is_sibling_of(pierre))
 print(adele.is_sibling_of(joseph))
+
+
+p1 = Person("Adele Martinez", mom=Person(
+    "Marie Ramos"), dad=Person("Jacques Martinez"))
+p2 = Person("Joseph Martinez", mom=Person(
+    "Marie Ramos"), dad=Person("Jacques Martinez"))
+print(p1.is_sibling_of(p2))
+
+leo.print_family_tree()
